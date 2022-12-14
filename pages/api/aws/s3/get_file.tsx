@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import S3 from "aws-sdk/clients/s3";
-import axios from "axios";
 
 export default async function awsUploader(
   req: NextApiRequest,
@@ -33,7 +32,7 @@ export default async function awsUploader(
         const fileParams = {
           Bucket: process.env.BUCKET_NAME,
           Key: req.body.file_key,
-          Expires: 600,
+          Expires: 10,
         };
 
         const url = await client_s3.getSignedUrlPromise(
